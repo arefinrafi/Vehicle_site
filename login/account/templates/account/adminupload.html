@@ -1,0 +1,187 @@
+{% extends 'baseforadminpanel.html' %}
+{% load static %}
+
+{% block sidebar %}
+    <ul class="submenu">
+        <li><a href="{% url 'admin_panel' %}"><i class="icon icon-th-list"></i> <span>Admin Home</span></a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="page-content">
+		<div class="form-v9-content"> <!--style="background-image: url({% static '/upload/images/cBkOhee.jpg' %})"-->
+			<form class="form-detail" action="" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<h2>Admin User Form</h2>
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="category">Category</label>
+						{{form.v_type}}
+
+					</div>
+					<div class="form-row">
+                        <label for="brand">Brand</label>
+                        {{form.brand}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="model">Model</label>
+						{{form.model}}
+					</div>
+					<div class="form-row">
+                        <label for="year">Model Year</label>
+						{{form.year}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="mileage">Mileage</label>
+						{{form.mileage}}
+					</div>
+					<div class="form-row">
+                        <label for="engine_capacity">Engine Capacity(CC)</label>
+						{{form.engine_capacity}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="fuel_type">Fuel Type</label>
+						{{form.fuel_type}}
+					</div>
+					<div class="form-row">
+                        <label for="max_power">Maximum Power</label>
+						{{form.max_power}}
+					</div>
+				</div>
+
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="max_speed">Maximum Speed</label>
+						{{form.max_speed}}
+					</div>
+					<div class="form-row">
+                        <label for="torque">Torque</label>
+						{{form.torque}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="fuel_consumption">Fuel Consumption</label>
+						{{form.fuel_consumption}}
+					</div>
+					<div class="form-row">
+                        <label for="door">Door</label>
+						{{form.door}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="drive_type">Drive Type</label>
+						{{form.drive_type}}
+					</div>
+					<div class="form-row">
+                        <label for="seats">Seats</label>
+						{{form.seats}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="wheel_base">Wheel Base</label>
+						{{form.wheel_base}}
+					</div>
+					<div class="form-row">
+                        <label for="weight">Weight(kg)</label>
+						{{form.weight}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="length">Length(mm)</label>
+						{{form.length}}
+					</div>
+					<div class="form-row">
+                        <label for="width">Width(mm)</label>
+						{{form.width}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="height">Height(mm)</label>
+						{{form.height}}
+					</div>
+					<div class="form-row">
+                        <label for="fuel_tank_capacity">Fuel Tank Capacity</label>
+						{{form.fuel_tank_capacity}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="color">Color</label>
+						{{form.color}}
+					</div>
+					<div class="form-row">
+                        <label for="no_of_cylinder">No of Cylinder</label>
+						{{form.no_of_cylinder}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="description">Description</label>
+						{{form.description}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="price">Price</label>
+						{{form.price}}
+					</div>
+					<div class="form-row">
+                        <label for="showroom_name">Showroom Name</label>
+						{{form.showroom_name}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="address">Address</label>
+						{{form.address}}
+					</div>
+					<div class="form-row">
+                        <label for="contact">Contact</label>
+						{{form.contact}}
+					</div>
+				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="image">Profile Image</label>
+						{{form.image}}
+					</div>
+					<div class="form-row">
+                        <label for="file">Other Image</label>
+						{{file_form.file}}
+					</div>
+				</div>
+				{% for message in messages %}
+				    <p id="messages" style="background: #00ff40; color: #ffffff; text-align: center;">{{message}}</p>
+				{% endfor %}
+				<div class="form-row-last">
+					<input type="submit" name="submit" class="submit" value="Submit">
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
