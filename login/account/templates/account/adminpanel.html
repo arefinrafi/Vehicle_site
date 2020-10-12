@@ -13,6 +13,11 @@
 					<a href="{% url 'admin_upload' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Details Upload</a>
                 </h4>
             </div>
+			<div class="panel-heading">
+                <h4 class="panel-title">
+					<a href="{% url 'admin_profit_section' %}"><span class="badge pull-right"><i class="fa fa-plus"></i></span>Profit Section</a>
+                </h4>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -32,11 +37,13 @@
 		<div class="product-image-wrapper">
 			<div class="single-products">
 				<div class="productinfo text-center">
-					<img src="{{admin.image.url}}" width="150px" height="150px" />
+					<a href="{% url 'view_details' pk=admin.pk %}">
+						<img src="{{admin.image.url}}" width="150px" height="150px" />
+					</a>
 					<h2>${{ admin.price }}</h2>
 					<h4>{{admin.brand}}  {{admin.model}}</h4>
-					<a href="{% url 'view_details' pk=admin.pk %}" class="btn btn-default add-to-cart">
-						<i class="fa fa-shopping-cart"></i>Details</a>
+<!--					<a href="{% url 'view_details' pk=admin.pk %}" class="btn btn-default add-to-cart">-->
+<!--						<i class="fa fa-shopping-cart"></i>Details</a>-->
 					<a href="{% url 'admin_update' id=admin.id %}" class="btn btn-default add-to-cart">
 						<i class="fa fa-pencil-square-o"></i>Edit</a>
 					<a href="{% url 'admin_delete' admin.id %}" class="btn btn-default add-to-cart">

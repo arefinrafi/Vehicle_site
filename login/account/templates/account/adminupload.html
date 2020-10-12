@@ -175,6 +175,17 @@
 						{{file_form.file}}
 					</div>
 				</div>
+
+				<div class="form-row-total">
+					<div class="form-row">
+                        <label for="purchase">Add Purchasing Amount</label>
+						{{form.purchase}}
+					</div>
+					<div class="form-row">
+                        <label for="selling">Add Selling Amount</label>
+						{{form.selling}}
+					</div>
+				</div>
 				{% for message in messages %}
 				    <p id="messages" style="background: #00ff40; color: #ffffff; text-align: center;">{{message}}</p>
 				{% endfor %}

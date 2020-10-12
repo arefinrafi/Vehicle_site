@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import User, ImageFile, Vehicle_info
-from django.db.models import Q
+from django.db.models import Q, F
 
 
 # Create your views here.
@@ -105,7 +105,6 @@ def admin_upload_page(request):  # insert data for vehicle upload table
 
 @login_required(login_url='login')
 def admin_update_page(request, id=0):  # Update data for vehicle upload table
-
     if request.method == 'POST':
         if id == 0:
             form = AdminUploadForm(request.POST, request.FILES)
@@ -137,6 +136,22 @@ def admin_delete(request, id):  # Delete the Admin
     admin_img.delete()
     messages.warning(request, 'Information Deleted successfully.')
     return redirect('admin_panel')
+
+
+def admin_profit_section(request):
+    current_user = request.user
+    current_vehicle = request.user
+    if current_user == current_vehicle:
+        context = {'profits': Vehicle_info.objects.filter(user=current_vehicle).annotate(
+            result=F('selling') - F('purchase'))}
+        return render(request, 'account/profitsection.html', context)
+    else:
+        context = {'profits': Vehicle_info.objects.all()}
+        return render(request, 'account/profitsection.html', context)
+
+    # profits = Vehicle_info.objects.all().annotate(result=F('selling') - F('purchase'))
+    # context = {'profits': profits}
+    # return render(request, "account/profitsection.html", context)
 
 
 def view_details_page(request, pk):

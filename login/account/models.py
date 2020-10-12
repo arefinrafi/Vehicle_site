@@ -36,13 +36,21 @@ class Vehicle_info(models.Model):
     color = models.CharField(max_length=100)
     no_of_cylinder = models.CharField(max_length=30)
     description = models.CharField(max_length=1024)
-    price = models.IntegerField()
+    price = models.IntegerField(default=0)
     showroom_name = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     contact = models.CharField(max_length=20)
     image = models.ImageField(upload_to="main_images/%Y/%m/%d")
+    purchase = models.IntegerField(blank=True, null=True, default=0)
+    selling = models.IntegerField(blank=True, null=True, default=0)
+
+    # @property
+    # def single_item_profit(self):
+    #     return self.selling - self.purchase
 
 
 class ImageFile(models.Model):
     file = models.FileField(upload_to="images/%Y/%m/%d")
     imgID = models.ForeignKey(Vehicle_info, on_delete=models.CASCADE)
+
+

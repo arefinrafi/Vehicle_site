@@ -20,7 +20,7 @@ class AdminUploadForm(forms.ModelForm):
                   'max_speed', 'torque', 'fuel_consumption',
                   'door', 'drive_type', 'seats', 'wheel_base', 'weight', 'length', 'width', 'height',
                   'fuel_tank_capacity', 'color', 'no_of_cylinder',
-                  'description', 'price', 'showroom_name', 'address', 'contact', 'image']
+                  'description', 'price', 'showroom_name', 'address', 'contact', 'image', 'purchase', 'selling']
 
     def __init__(self, *args, **kwargs):
         super(AdminUploadForm, self).__init__(*args, **kwargs)
