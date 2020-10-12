@@ -138,6 +138,7 @@ def admin_delete(request, id):  # Delete the Admin
     return redirect('admin_panel')
 
 
+@login_required(login_url='login')
 def admin_profit_section(request):
     current_user = request.user
     current_vehicle = request.user
