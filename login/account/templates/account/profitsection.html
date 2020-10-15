@@ -34,6 +34,8 @@
 				<th><h6>{{profit.selling}}</h6></th>
 				<th><h6>{{profit.purchase}}</h6></th>
 				<th><h6>{{profit.result}}</h6></th>
+				<th><a href="{% url 'admin_update' id=profit.id %}" class="btn btn-success">Edit</a>
+				<a href="{% url 'admin_delete' profit.id %}" class="btn btn-danger">Delete</a></th>
 
 <!--				 <th scope="row">{{profit.brand}}</th>-->
 <!--				<th scope="row">{{profit.model}}</th>-->
@@ -45,8 +47,8 @@
 		  </tbody>
 		{% endfor %}
 		<tr>
-			<td colspan="5"><h3 style="margin-left:80%;">Total Profit: </h3></td>
-			<td><h3 style="margin-left:30%;">${{ total_profit.total }}</h3></td>
+			<td colspan="5"><h4 style="margin-left:74%;">Total Profit: </h4></td>
+			<td><h4 style="margin-left:30%;">${{ total_profit.total }}</h4></td>
 <!--          <th scope="col">Total Profit: {{ total_profit.total }}</th>-->
         </tr>
 	</table>
