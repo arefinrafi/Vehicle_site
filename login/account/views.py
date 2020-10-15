@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import User, ImageFile, Vehicle_info
-from django.db.models import Q, F
+from django.db.models import Q, F, Sum
 
 
 # Create your views here.
@@ -143,8 +143,11 @@ def admin_profit_section(request):
     current_user = request.user
     current_vehicle = request.user
     if current_user == current_vehicle:
-        context = {'profits': Vehicle_info.objects.filter(user=current_vehicle).annotate(
-            result=F('selling') - F('purchase'))}
+        profit = Vehicle_info.objects.filter(user=current_vehicle).annotate(
+            result=F('selling') - F('purchase'))
+        total_profit = Vehicle_info.objects.filter(user=current_vehicle).aggregate(
+            total=Sum(F('selling') - F('purchase')))
+        context = {'profits': profit, 'total_profit': total_profit}
         return render(request, 'account/profitsection.html', context)
     else:
         context = {'profits': Vehicle_info.objects.all()}
@@ -343,4 +346,3 @@ def one_crore_above(request):
     ranges = Vehicle_info.objects.filter(price__gte=10000000)
     context = {'ranges': ranges}
     return render(request, 'brands/price/1croreabove.html', context)
-

@@ -49,6 +49,7 @@ class Vehicle_info(models.Model):
     #     return self.selling - self.purchase
 
 
+
 class ImageFile(models.Model):
     file = models.FileField(upload_to="images/%Y/%m/%d")
     imgID = models.ForeignKey(Vehicle_info, on_delete=models.CASCADE)
