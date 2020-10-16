@@ -41,8 +41,12 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)
-            return redirect('admin_panel')
+            if user.is_superuser or user.is_staff:
+                login(request, user)
+                return redirect('super_admin')
+            else:
+                login(request, user)
+                return redirect('admin_panel')
         else:
             messages.info(request, 'username or password is incorrect.')
     return render(request, 'account/login.html')
@@ -163,6 +167,19 @@ def view_details_page(request, pk):
     view = ImageFile.objects.filter(imgID=pk)
     context = {'views': views, 'view': view}
     return render(request, 'account/viewdetails.html', context)
+
+
+@login_required(login_url='login')
+def super_admin(request):
+    context = {'superadmin': User.objects.all().order_by('id')}
+    return render(request, 'account/superadmin.html', context)
+
+
+def super_admin_delete(request, id):  # Delete the Admin
+    delete_admin = User.objects.get(pk=id)
+    delete_admin.delete()
+    messages.warning(request, 'Information Deleted successfully.')
+    return redirect('super_admin')
 
 
 def bike_page(request):
