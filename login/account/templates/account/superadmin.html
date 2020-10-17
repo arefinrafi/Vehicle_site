@@ -19,6 +19,7 @@
 		<tr>
 			<th><h4 style="color: #76D7C4;">Showroom Name</h4></th>
             <th><h4 style="color: #76D7C4;">E-Mail</h4></th>
+			<th><h4 style="color: #76D7C4;">Vehicle Number</h4></th>
 		</tr>
 	  </thead>
 		{% for superadmin in superadmin %}
@@ -26,10 +27,11 @@
 			<tr>
 				<th><h6>{{superadmin.username}}</h6></th>
                 <th><h6>{{superadmin.email}}</h6></th>
+				<th><h6>{{superadmin.num_vehicle}}</h6></th>
                 {% if superadmin.is_superuser %}
-
+					 <th><a style="border-radius:10px;" class="btn btn-info">Super Admin</a></th>
                 {% else %}
-                    <th><a href="{% url 'super_admin_delete' superadmin.id %}" class="btn btn-danger">Delete</a></th>
+                    <th><a style="border-radius:8px;" href="{% url 'super_admin_delete' superadmin.id %}" class="btn btn-danger">Delete</a></th>
                 {% endif %}
 			</tr>
 		  </tbody>

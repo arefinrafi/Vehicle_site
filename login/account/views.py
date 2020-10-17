@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import User, ImageFile, Vehicle_info
-from django.db.models import Q, F, Sum
+from django.db.models import Q, F, Sum, Count
 
 
 # Create your views here.
@@ -171,7 +171,8 @@ def view_details_page(request, pk):
 
 @login_required(login_url='login')
 def super_admin(request):
-    context = {'superadmin': User.objects.all().order_by('id')}
+    superadmin = User.objects.all().annotate(num_vehicle=Count('vehicle_info'))
+    context = {'superadmin': superadmin.order_by('id')}
     return render(request, 'account/superadmin.html', context)
 
 
