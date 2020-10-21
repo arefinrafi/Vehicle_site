@@ -29,8 +29,8 @@ def home_page(request):
         query = request.GET.get("q", None)  # search query
         if query is not None:
             vehicle_page = vehicle.filter(Q(brand__icontains=query) | Q(model__icontains=query) |
-                                          Q(showroom_name__icontains=query))  # search query
-        context = {'homepanel': vehicle_page.object_list, 'paginator': paginator, 'page_number': int(page_number)}
+                                          Q(showroom_name__icontains=query) | Q(year__icontains=query))  # search query
+        context = {'homepanel': vehicle_page, 'paginator': paginator, 'page_number': int(page_number)}
         return render(request, 'account/home.html', context)
 
 
